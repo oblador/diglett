@@ -1,6 +1,6 @@
 {
   "name": "diglett",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Detect multiple versions of dependencies",
   "main": "src/cli.js",
   "scripts": {
