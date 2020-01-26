@@ -38,9 +38,7 @@ function main() {
 
   program.parse(process.argv);
 
-  const projectPath = path.resolve(
-    program.args[0] || process.env.CWD || __dirname
-  );
+  const projectPath = path.resolve(program.args[0] || './');
 
   function readFile(fileName) {
     const filePath = path.join(projectPath, fileName);
