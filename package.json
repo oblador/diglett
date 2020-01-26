@@ -1,0 +1,39 @@
+{
+  "name": "diglett",
+  "version": "1.0.0",
+  "description": "Detect multiple versions of dependencies",
+  "main": "src/cli.js",
+  "scripts": {
+    "test": "jest",
+    "format": "prettier --write {src,test}/**/*.js README.md"
+  },
+  "bin": {
+    "diglett": "./bin/diglett"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oblador/diglett.git"
+  },
+  "keywords": [
+    "yarn"
+  ],
+  "author": "Joel Arvidsson <joel@oblador.se>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oblador/diglett/issues"
+  },
+  "homepage": "https://github.com/oblador/diglett#readme",
+  "dependencies": {
+    "@yarnpkg/lockfile": "^1.1.0",
+    "chalk": "^3.0.0",
+    "commander": "^4.1.0"
+  },
+  "devDependencies": {
+    "jest": "^25.1.0",
+    "prettier": "^1.19.1"
+  }
+}

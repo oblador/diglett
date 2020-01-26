@@ -1,0 +1,6 @@
+# macOS filesystem
+.DS_Store
+
+# Generated files
+*.log
+node_modules/
