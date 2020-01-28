@@ -13,27 +13,24 @@ const execFixture = (fixtureName, flags = []) =>
     );
   });
 
-describe('diglett CLI', () => {
-  describe('Non-existing project', () => {
-    it('fails', async () => {
-      const { stderr } = await execFixture('non-existing');
-      expect(stderr).toContain('File yarn.lock not found');
-    });
-  });
-
+describe.each([
+  ['Isolated package', ''],
+  ['Yarn workspaces', 'workspaces/packages/'],
+])('%s', (name, pathPrefix) => {
   describe('Package with duplicate dependencies', () => {
+    const fixture = `${pathPrefix}regular`;
     it('fails with 9 duplicate dependencies', async () => {
-      const { stderr } = await execFixture('regular');
+      const { stderr } = await execFixture(fixture);
       expect(stderr).toContain('Found 9 duplicate dependencies');
     });
 
     it('passes with non-matching filter', async () => {
-      const { stderr } = await execFixture('regular', ['--filter', 'hest']);
+      const { stderr } = await execFixture(fixture, ['--filter', 'hest']);
       expect(stderr).toBeFalsy();
     });
 
     it('fails with matching filter', async () => {
-      const { stderr } = await execFixture('regular', [
+      const { stderr } = await execFixture(fixture, [
         '--filter',
         '^@material/ripple$',
       ]);
@@ -42,19 +39,20 @@ describe('diglett CLI', () => {
   });
 
   describe('Package with duplicate devDependencies', () => {
+    const fixture = `${pathPrefix}dev-dependencies`;
     it('passes without --dev flag', async () => {
-      const { stdout, stderr } = await execFixture('devDependencies', []);
+      const { stdout, stderr } = await execFixture(fixture, []);
       expect(stderr).toBeFalsy();
       expect(stdout).toContain('No duplicate dependencies found');
     });
 
     it('passes with --dev flag', async () => {
-      const { stderr } = await execFixture('devDependencies', ['--dev']);
+      const { stderr } = await execFixture(fixture, ['--dev']);
       expect(stderr).toContain('Found 9 duplicate dependencies');
     });
 
     it('passes with --all flag', async () => {
-      const { stderr } = await execFixture('devDependencies', ['--all']);
+      const { stderr } = await execFixture(fixture, ['--all']);
       expect(stderr).toContain('Found 9 duplicate dependencies');
     });
   });

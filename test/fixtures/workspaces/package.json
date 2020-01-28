@@ -1,0 +1,9 @@
+{
+  "name": "diglett-workspaces",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  }
+}
