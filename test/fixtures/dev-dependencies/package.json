@@ -1,5 +1,6 @@
 {
-  "name": "devDependencies",
+  "name": "diglett-dev-dependencies",
+  "private": true,
   "dependencies": {
     "@material/textfield": "^4.0.0"
   },
