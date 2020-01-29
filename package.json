@@ -30,7 +30,7 @@
   "dependencies": {
     "@yarnpkg/lockfile": "^1.1.0",
     "chalk": "^3.0.0",
-    "commander": "^4.1.0"
+    "yargs": "^15.1.0"
   },
   "devDependencies": {
     "jest": "^25.1.0",

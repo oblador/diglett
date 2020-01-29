@@ -5,7 +5,7 @@ Diglett is a command line tool that helps you detect packages with multiple vers
 ## Usage
 
 ```
-npx diglett <optional path to project>
+npx diglett yarn <optional path to project>
 ```
 
 By default _diglett_ will ignore packages not imported by dependencies defined in the `dependencies` field of your `package.json`. If duplicate resolved packages found it will exit with code `1` and output the resolved versions:
