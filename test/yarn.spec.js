@@ -1,36 +1,33 @@
 const path = require('path');
-const child_process = require('child_process');
+const { exec } = require('./helpers');
 
-const DIGLETT_PATH = path.join(path.dirname(__dirname), 'bin', 'diglett');
+const getFixturePath = fixtureName => `${__dirname}/fixtures/${fixtureName}`;
 
-const execFixture = (fixtureName, flags = []) =>
-  new Promise(resolve => {
-    child_process.exec(
-      `${DIGLETT_PATH} ${__dirname}/fixtures/${fixtureName} ${flags.join(' ')}`,
-      (err, stdout, stderr) => {
-        resolve({ stdout, stderr });
-      }
-    );
+describe('diglett yarn', () => {
+  describe('Non-existing project', () => {
+    const fixture = getFixturePath('non-existing');
+    it('fails', async () => {
+      const { stderr } = await exec(['yarn', fixture]);
+      expect(stderr).toContain('File package.json not found');
+    });
   });
 
-describe.each([
-  ['Isolated package', ''],
-  ['Yarn workspaces', 'workspaces/packages/'],
-])('%s', (name, pathPrefix) => {
   describe('Package with duplicate dependencies', () => {
-    const fixture = `${pathPrefix}regular`;
+    const fixture = getFixturePath('regular');
     it('fails with 9 duplicate dependencies', async () => {
-      const { stderr } = await execFixture(fixture);
+      const { stderr } = await exec(['yarn', fixture]);
       expect(stderr).toContain('Found 9 duplicate dependencies');
     });
 
     it('passes with non-matching filter', async () => {
-      const { stderr } = await execFixture(fixture, ['--filter', 'hest']);
+      const { stderr } = await exec(['yarn', fixture, '--filter', 'hest']);
       expect(stderr).toBeFalsy();
     });
 
     it('fails with matching filter', async () => {
-      const { stderr } = await execFixture(fixture, [
+      const { stderr } = await exec([
+        'yarn',
+        fixture,
         '--filter',
         '^@material/ripple$',
       ]);
@@ -39,20 +36,20 @@ describe.each([
   });
 
   describe('Package with duplicate devDependencies', () => {
-    const fixture = `${pathPrefix}dev-dependencies`;
+    const fixture = getFixturePath('dev-dependencies');
     it('passes without --dev flag', async () => {
-      const { stdout, stderr } = await execFixture(fixture, []);
+      const { stdout, stderr } = await exec(['yarn', fixture]);
       expect(stderr).toBeFalsy();
       expect(stdout).toContain('No duplicate dependencies found');
     });
 
     it('passes with --dev flag', async () => {
-      const { stderr } = await execFixture(fixture, ['--dev']);
+      const { stderr } = await exec(['yarn', fixture, '--dev']);
       expect(stderr).toContain('Found 9 duplicate dependencies');
     });
 
     it('passes with --all flag', async () => {
-      const { stderr } = await execFixture(fixture, ['--all']);
+      const { stderr } = await exec(['yarn', fixture, '--all']);
       expect(stderr).toContain('Found 9 duplicate dependencies');
     });
   });
