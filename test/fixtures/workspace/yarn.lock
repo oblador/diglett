@@ -16,6 +16,13 @@
   dependencies:
     tslib "^1.9.3"
 
+"@material/base@3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@material/base/-/base-3.0.0.tgz#a9ab0ee0337727c682150f2946cb4db2742470e2"
+  integrity sha512-ZCHKBFOoxLCmxutqcY0PKrilku16hj4e/hu1XPVOpwv+Ij2ill2Wvf2/khaZm1Y4We4wVygbnT/ILYpxx1GflQ==
+  dependencies:
+    tslib "^1.9.3"
+
 "@material/base@^3.1.0":
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/@material/base/-/base-3.1.0.tgz#ab933896ab6390d4e1d2f9797b74a90f47db272a"

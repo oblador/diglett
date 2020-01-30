@@ -13,6 +13,9 @@ const exec = (args = []) =>
     );
   });
 
+const getFixturePath = fixtureName => `${__dirname}/fixtures/${fixtureName}`;
+
 module.exports = {
   exec,
+  getFixturePath,
 };

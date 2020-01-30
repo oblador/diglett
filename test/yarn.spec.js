@@ -1,7 +1,5 @@
 const path = require('path');
-const { exec } = require('./helpers');
-
-const getFixturePath = fixtureName => `${__dirname}/fixtures/${fixtureName}`;
+const { exec, getFixturePath } = require('./helpers');
 
 describe('diglett yarn', () => {
   describe('Non-existing project', () => {
@@ -43,12 +41,12 @@ describe('diglett yarn', () => {
       expect(stdout).toContain('No duplicate dependencies found');
     });
 
-    it('passes with --dev flag', async () => {
+    it('fails with --dev flag', async () => {
       const { stderr } = await exec(['yarn', fixture, '--dev']);
       expect(stderr).toContain('Found 9 duplicate dependencies');
     });
 
-    it('passes with --all flag', async () => {
+    it('fails with --all flag', async () => {
       const { stderr } = await exec(['yarn', fixture, '--all']);
       expect(stderr).toContain('Found 9 duplicate dependencies');
     });
