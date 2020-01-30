@@ -1,4 +1,8 @@
-function groupResolvedDependencies(packageDependencies, resolvedDependencies) {
+function groupResolvedDependencies(
+  packageDependencies,
+  resolvedDependencies,
+  collection
+) {
   const populateVersions = (
     packageName,
     requestedVersion,
@@ -11,10 +15,6 @@ function groupResolvedDependencies(packageDependencies, resolvedDependencies) {
 
     const versions = installedVersions.get(packageName);
     const dependencyKey = `${packageName}@${requestedVersion}`;
-    if (!dependencies[dependencyKey]) {
-      // Doesn't exist in lockfile, either it's out of date or it's a worspace
-      return installedVersions;
-    }
     const installedVersion = dependencies[dependencyKey].version;
 
     if (!versions.has(installedVersion)) {
@@ -33,7 +33,7 @@ function groupResolvedDependencies(packageDependencies, resolvedDependencies) {
     return installedVersions;
   };
 
-  const versions = new Map();
+  const versions = collection ? new Map(collection) : new Map();
 
   for (const packageName in packageDependencies) {
     const requestedVersion = packageDependencies[packageName];
