@@ -25,9 +25,16 @@ class InvalidProjectTypeError extends DiglettError {
   }
 }
 
+class InvalidArgumentError extends DiglettError {
+  constructor(message) {
+    super(message, 'InvalidArgumentError');
+  }
+}
+
 module.exports = {
   DiglettError,
   FileNotFoundError,
   ParseError,
   InvalidProjectTypeError,
+  InvalidArgumentError,
 };

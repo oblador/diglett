@@ -1,7 +1,8 @@
-function getPackageDependencies(packageJSON, argv) {
-  return ['devDependencies', 'optionalDependencies', 'peerDependencies']
-    .filter(dependencyGroup => argv.allDependencies || argv[dependencyGroup])
-    .concat('dependencies')
+function getPackageDependencies(
+  packageJSON,
+  dependencyGroups = ['dependencies']
+) {
+  return dependencyGroups
     .map(dependencyGroup => packageJSON[dependencyGroup])
     .filter(Boolean)
     .reduce((acc, current) => Object.assign(acc, current), {});

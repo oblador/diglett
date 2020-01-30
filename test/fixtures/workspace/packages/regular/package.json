@@ -1,11 +1,12 @@
 {
-  "name": "diglett-workspaces-dev-dependencies",
+  "name": "diglett-workspace-regular",
   "version": "0.0.0",
   "private": true,
   "dependencies": {
+    "@material/button": "^3.2.0",
     "@material/textfield": "^4.0.0"
-  },
+  }, 
   "devDependencies": {
-    "@material/button": "^3.2.0"
+    "@material/base": "3.0.0"
   }
 }

@@ -4,10 +4,6 @@ Diglett is a command line tool that helps you detect packages with multiple vers
 
 ## Usage
 
-```
-npx diglett yarn <optional path to project>
-```
-
 By default _diglett_ will ignore packages not imported by dependencies defined in the `dependencies` field of your `package.json`. If duplicate resolved packages found it will exit with code `1` and output the resolved versions:
 
 ```
@@ -15,7 +11,21 @@ Found 1 duplicate dependency
 @material/animation with versions 3.1.0, 4.0.0.
 ```
 
-## Options
+### Yarn projects
+
+```
+npx diglett yarn <optional path to project>
+```
+
+### Yarn workspaces
+
+```
+npx diglett workspace <optional path to project> [--package <package name>]
+```
+
+By default all workspace packages are analyzed. If you just want to analyze one, pass the `--package` option with the package name – not folder name. It's possible to pass the `--package` option multiple times to analyze multiple packages.
+
+## General options
 
 | **Name**           | **Description**                                                | **Default** |
 | ------------------ | -------------------------------------------------------------- | ----------- |
