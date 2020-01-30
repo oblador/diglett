@@ -1,17 +1,8 @@
 const groupResolvedDependencies = require('./groupResolvedDependencies');
 
-function getDuplicateDependencies(
-  resolvedDependencies,
-  packageDependencies,
-  packageNamePattern
-) {
-  const grouped = groupResolvedDependencies(
-    packageDependencies,
-    resolvedDependencies
-  );
-
+function getDuplicateDependencies(groupedVersions, packageNamePattern) {
   const duplicates = new Map();
-  grouped.forEach((versions, packageName) => {
+  groupedVersions.forEach((versions, packageName) => {
     if (
       versions.size > 1 &&
       (!packageNamePattern || packageNamePattern.test(packageName))
