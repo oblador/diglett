@@ -5,7 +5,7 @@ describe('diglett workspace', () => {
   describe('Non-existing project', () => {
     it('fails', async () => {
       const { stderr } = await exec([
-        'workspace',
+        'yarn-workspace',
         getFixturePath('non-existing'),
       ]);
       expect(stderr).toContain('File package.json not found');
@@ -16,18 +16,22 @@ describe('diglett workspace', () => {
 
   describe('Entire workspace', () => {
     it('fails with 9 duplicate dependencies', async () => {
-      const { stderr } = await exec(['workspace', fixture]);
+      const { stderr } = await exec(['yarn-workspace', fixture]);
       expect(stderr).toContain('Found 9 duplicate dependencies');
     });
 
     it('passes with non-matching filter', async () => {
-      const { stderr } = await exec(['workspace', fixture, '--filter=hest']);
+      const { stderr } = await exec([
+        'yarn-workspace',
+        fixture,
+        '--filter=hest',
+      ]);
       expect(stderr).toBeFalsy();
     });
 
     it('fails with matching filter', async () => {
       const { stderr } = await exec([
-        'workspace',
+        'yarn-workspace',
         fixture,
         '--filter=^@material/ripple$',
       ]);
@@ -38,7 +42,7 @@ describe('diglett workspace', () => {
   describe('Non-existing package', () => {
     it('fails', async () => {
       const { stderr } = await exec([
-        'workspace',
+        'yarn-workspace',
         fixture,
         '--package=non-existing',
       ]);
@@ -49,7 +53,7 @@ describe('diglett workspace', () => {
   describe('Package with duplicate dependencies', () => {
     it('fails with 9 duplicate dependencies', async () => {
       const { stderr } = await exec([
-        'workspace',
+        'yarn-workspace',
         fixture,
         '--package=diglett-workspace-regular',
       ]);
@@ -60,7 +64,7 @@ describe('diglett workspace', () => {
   describe('Package with duplicate cross dependencies', () => {
     it('fails with 9 duplicate dependencies', async () => {
       const { stderr } = await exec([
-        'workspace',
+        'yarn-workspace',
         fixture,
         '--package=diglett-workspace-cross-dependency',
       ]);
@@ -69,7 +73,7 @@ describe('diglett workspace', () => {
 
     it('ignores devDependencies from cross dependencies with --dev flag', async () => {
       const { stderr } = await exec([
-        'workspace',
+        'yarn-workspace',
         fixture,
         '--package=diglett-workspace-cross-dependency',
         '--dev',
@@ -81,7 +85,7 @@ describe('diglett workspace', () => {
   describe('Package with duplicate devDependencies', () => {
     it('passes without --dev flag', async () => {
       const { stdout, stderr } = await exec([
-        'workspace',
+        'yarn-workspace',
         fixture,
         '--package=diglett-workspace-dev-dependencies',
       ]);
@@ -91,7 +95,7 @@ describe('diglett workspace', () => {
 
     it('fails with --dev flag', async () => {
       const { stderr } = await exec([
-        'workspace',
+        'yarn-workspace',
         fixture,
         '--package=diglett-workspace-dev-dependencies',
         '--dev',
@@ -101,7 +105,7 @@ describe('diglett workspace', () => {
 
     it('fails with --all flag', async () => {
       const { stderr } = await exec([
-        'workspace',
+        'yarn-workspace',
         fixture,
         '--package=diglett-workspace-dev-dependencies',
         '--all',

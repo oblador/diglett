@@ -20,7 +20,7 @@ npx diglett yarn <optional path to project>
 ### Yarn workspaces
 
 ```
-npx diglett workspace <optional path to project> [--package <package name>]
+npx diglett yarn-workspace <optional path to project> [--package <package name>]
 ```
 
 By default all workspace packages are analyzed. If you just want to analyze one, pass the `--package` option with the package name – not folder name. It's possible to pass the `--package` option multiple times to analyze multiple packages.

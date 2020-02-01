@@ -10,7 +10,7 @@ const getDependencyGroupsFromArgv = require('../getDependencyGroupsFromArgv');
 const groupResolvedDependencies = require('../groupResolvedDependencies');
 const printResult = require('../printResult');
 
-exports.command = 'workspace [project-path]';
+exports.command = 'yarn-workspace [project-path]';
 
 exports.describe = 'Check yarn workspaces project';
 
