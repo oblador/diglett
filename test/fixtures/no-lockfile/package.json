@@ -1,0 +1,8 @@
+{
+  "name": "diglett-no-lockfile",
+  "private": true,
+  "dependencies": {
+    "@material/button": "^3.2.0",
+    "@material/textfield": "^4.0.0"
+  }
+}

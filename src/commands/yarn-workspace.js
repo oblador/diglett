@@ -3,11 +3,11 @@ const path = require('path');
 const glob = require('glob');
 const sharedArguments = require('../sharedArguments');
 const { InvalidProjectTypeError, InvalidArgumentError } = require('../errors');
-const { readLockfile, readPackageJSON } = require('../fs');
+const { readYarnLockfile, readPackageJSON } = require('../fs');
 const getDuplicateDependencies = require('../getDuplicateDependencies');
 const getPackageDependencies = require('../getPackageDependencies');
 const getDependencyGroupsFromArgv = require('../getDependencyGroupsFromArgv');
-const groupResolvedDependencies = require('../groupResolvedDependencies');
+const groupYarnDependencies = require('../groupYarnDependencies');
 const printResult = require('../printResult');
 
 exports.command = 'yarn-workspace [project-path]';
@@ -63,7 +63,7 @@ function getWorkspaceDependencies(
 exports.handler = function(argv) {
   const projectPath = path.resolve(argv.projectPath || './');
   const packageJSON = readPackageJSON(projectPath);
-  const lockfile = readLockfile(projectPath);
+  const lockfile = readYarnLockfile(projectPath);
   const dependencyGroups = getDependencyGroupsFromArgv(argv);
 
   const { workspaces } = packageJSON;
@@ -107,7 +107,7 @@ exports.handler = function(argv) {
     .map(omit(packageNames))
     .reduce(
       (acc, packageDependencies) =>
-        groupResolvedDependencies(packageDependencies, lockfile, acc),
+        groupYarnDependencies(packageDependencies, lockfile, acc),
       new Map()
     );
 
