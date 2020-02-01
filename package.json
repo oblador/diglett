@@ -1,6 +1,6 @@
 {
   "name": "diglett",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "Detect multiple versions of dependencies",
   "main": "src/cli.js",
   "scripts": {
@@ -12,14 +12,22 @@
   },
   "files": [
     "bin",
-    "src"
+    "src/**/*.js"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/oblador/diglett.git"
   },
   "keywords": [
-    "yarn"
+    "cli",
+    "duplicate",
+    "version",
+    "lockfile",
+    "lerna",
+    "yarn", 
+    "yarn workspaces",
+    "workspaces",
+    "workspace"
   ],
   "author": "Joel Arvidsson <joel@oblador.se>",
   "license": "MIT",
