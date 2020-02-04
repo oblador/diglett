@@ -1,4 +1,4 @@
-function groupResolvedDependencies(
+function groupYarnDependencies(
   packageDependencies,
   resolvedDependencies,
   collection
@@ -48,4 +48,4 @@ function groupResolvedDependencies(
   return versions;
 }
 
-module.exports = groupResolvedDependencies;
+module.exports = groupYarnDependencies;

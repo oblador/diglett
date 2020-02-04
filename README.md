@@ -11,6 +11,12 @@ Found 1 duplicate dependency
 @material/animation with versions 3.1.0, 4.0.0.
 ```
 
+### npm projects
+
+```
+npx diglett npm <optional path to project>
+```
+
 ### Yarn projects
 
 ```
@@ -34,10 +40,6 @@ By default all workspace packages are analyzed. If you just want to analyze one,
 | `--dev`            | Also checks packages in the `devDependencies` field.           | _false_     |
 | `--optional`       | Also checks packages in the `optionalDependencies` field.      | _false_     |
 | `--peer`           | Also checks packages in the `peerDependencies` field.          | _false_     |
-
-## Limitations
-
-Currently the project only supports projects with `yarn.lock` files.
 
 ## Prior work
 

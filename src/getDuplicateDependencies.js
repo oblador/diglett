@@ -1,4 +1,4 @@
-const groupResolvedDependencies = require('./groupResolvedDependencies');
+const groupYarnDependencies = require('./groupYarnDependencies');
 
 function getDuplicateDependencies(groupedVersions, packageNamePattern) {
   const duplicates = new Map();

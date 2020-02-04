@@ -6,14 +6,21 @@ const { FileNotFoundError, ParseError } = require('./errors');
 function readFile(fileName, projectPath) {
   const filePath = path.join(projectPath, fileName);
   if (!fs.existsSync(filePath)) {
-    throw new FileNotFoundError(
-      `File ${fileName} not found in ${projectPath}. Please supply a valid path to a yarn project.`
-    );
+    throw new FileNotFoundError(`File ${fileName} not found in ${projectPath}`);
   }
   return fs.readFileSync(filePath, 'utf8');
 }
 
-function readLockfile(projectPath) {
+function readJSON(fileName, projectPath) {
+  const file = readFile(fileName, projectPath);
+  try {
+    return JSON.parse(file);
+  } catch {
+    throw new ParseError(`Failed to parse ${fileName}`);
+  }
+}
+
+function readYarnLockfile(projectPath) {
   const file = readFile('yarn.lock', projectPath);
   const parsed = lockfile.parse(file);
   if (parsed.type !== 'success') {
@@ -23,15 +30,15 @@ function readLockfile(projectPath) {
 }
 
 function readPackageJSON(projectPath) {
-  const file = readFile('package.json', projectPath);
-  try {
-    return JSON.parse(file);
-  } catch {
-    throw new ParseError('Failed to parse package.json');
-  }
+  return readJSON('package.json', projectPath);
+}
+
+function readNpmLockfile(projectPath) {
+  return readJSON('package-lock.json', projectPath);
 }
 
 module.exports = {
-  readLockfile,
+  readYarnLockfile,
+  readNpmLockfile,
   readPackageJSON,
 };
