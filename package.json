@@ -1,6 +1,6 @@
 {
   "name": "diglett",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Detect multiple versions of dependencies",
   "main": "src/cli.js",
   "scripts": {
@@ -24,7 +24,7 @@
     "version",
     "lockfile",
     "lerna",
-    "yarn", 
+    "yarn",
     "yarn workspaces",
     "workspaces",
     "workspace"
