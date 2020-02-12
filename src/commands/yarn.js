@@ -30,5 +30,5 @@ exports.handler = function(argv) {
 
   const duplicates = getDuplicateDependencies(groupedVersions, argv.filter);
 
-  printResult(duplicates);
+  printResult(duplicates, true);
 };

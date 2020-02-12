@@ -1,6 +1,6 @@
 const chalk = require('chalk');
 
-function printResult(duplicates) {
+function printResult(duplicates, isYarn = false) {
   if (duplicates.size !== 0) {
     console.error(
       chalk.bold.red(
@@ -16,11 +16,19 @@ function printResult(duplicates) {
         )}.`
       );
     });
-    console.info(
-      chalk.dim(
-        '\n- Run `yarn why <package>` to find which dependencies mismatch. \n- Consider adding a manual override using the `resolutions` field in your package.json.'
-      )
-    );
+    if (isYarn) {
+      console.info(
+        chalk.dim(
+          '\n- Run `yarn why <package>` to find which dependencies mismatch. \n- Consider adding a manual override using the `resolutions` field in your package.json.'
+        )
+      );
+    } else {
+      console.info(
+        chalk.dim(
+          '\n- Run `yarn why <package>` to find which dependencies mismatch. \n- Try `npm dedupe` to fix duplicate dependencies.'
+        )
+      );
+    }
     process.exit(1);
   } else {
     console.info('No duplicate dependencies found');
