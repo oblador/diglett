@@ -217,6 +217,11 @@
   dependencies:
     "@material/feature-targeting" "^4.0.0"
 
+"diglett-workspace-file-dependency@file:not-in-workspace/file-dependency":
+  version "0.0.0"
+  dependencies:
+    "@material/button" "^3.2.0"
+
 tslib@^1.9.3:
   version "1.10.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.10.0.tgz#c3c19f95973fb0a62973fb09d90d961ee43e5c8a"

@@ -23,9 +23,42 @@ exports.builder = {
   ...sharedArguments,
 };
 
-function readPackageJSONSafely(projectPath) {
+const FILE_PREFIX = 'file:';
+function normaliseFileDependencies(dependencies, projectPath, packagePath) {
+  return Object.keys(dependencies).reduce((acc, key) => {
+    let version = dependencies[key];
+    if (version.startsWith(FILE_PREFIX)) {
+      const absolute = path.resolve(
+        projectPath,
+        packagePath,
+        version.substr(FILE_PREFIX.length)
+      );
+      const relative = path.relative(projectPath, absolute);
+      version = `${FILE_PREFIX}${relative}`;
+    }
+    acc[key] = version;
+    return acc;
+  }, {});
+}
+
+function readNormalizedPackageJSONSafely(projectPath, packagePath) {
   try {
-    return readPackageJSON(projectPath);
+    const packageJSON = readPackageJSON(path.join(projectPath, packagePath));
+    [
+      'dependencies',
+      'devDependencies',
+      'optionalDependencies',
+      'peerDependencies',
+    ].forEach(key => {
+      if (key in packageJSON) {
+        packageJSON[key] = normaliseFileDependencies(
+          packageJSON[key],
+          projectPath,
+          packagePath
+        );
+      }
+    });
+    return packageJSON;
   } catch (_error) {
     return null;
   }
@@ -75,7 +108,7 @@ exports.handler = function(argv) {
     .map(pattern => glob.sync(pattern, { cwd: projectPath }))
     .reduce((acc, arr) => acc.concat(arr), [])
     .map(packagePath =>
-      readPackageJSONSafely(path.join(projectPath, packagePath))
+      readNormalizedPackageJSONSafely(projectPath, packagePath)
     )
     .filter(Boolean)
     .reduce((acc, pkg) => acc.set(pkg.name, pkg), new Map());
