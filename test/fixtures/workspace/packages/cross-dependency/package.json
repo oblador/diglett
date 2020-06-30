@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@material/button": "^3.2.0",
-    "diglett-workspace-dev-dependencies": "0.0.0"
+    "diglett-workspace-dev-dependencies": "0.0.0",
+    "diglett-workspace-file-dependency": "file:../../not-in-workspace/file-dependency"
   }
 }

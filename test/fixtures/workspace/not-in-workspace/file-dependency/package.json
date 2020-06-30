@@ -1,0 +1,8 @@
+{
+  "name": "diglett-workspace-file-dependency",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@material/button": "^3.2.0"
+  }
+}
