@@ -31,10 +31,17 @@ class InvalidArgumentError extends DiglettError {
   }
 }
 
+class StaleLockfileError extends DiglettError {
+  constructor(message) {
+    super(message, 'StaleLockfileError');
+  }
+}
+
 module.exports = {
   DiglettError,
   FileNotFoundError,
   ParseError,
   InvalidProjectTypeError,
   InvalidArgumentError,
+  StaleLockfileError,
 };
