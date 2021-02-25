@@ -1,3 +1,4 @@
+const { StaleLockfileError } = require('./errors');
 const buildNpmLockfileGraph = require('./graph/buildNpmLockfileGraph');
 
 const populateVersions = (dependency, installedVersions = new Map()) => {
@@ -24,6 +25,11 @@ function groupNpmDependencies(packageDependencies, lockfile) {
 
   for (const packageName in packageDependencies) {
     const dependency = graph.children.get(packageName);
+    if (!dependency) {
+      throw new StaleLockfileError(
+        `Unable to find resolution for "${packageName}", ensure package-lock.json is up to date`
+      );
+    }
     populateVersions(dependency, versions);
   }
 

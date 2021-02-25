@@ -21,6 +21,14 @@ describe.each([
     });
   });
 
+  describe('Project with stale lockfile', () => {
+    const fixture = getFixturePath('stale-lockfile');
+    it('fails', async () => {
+      const { stderr } = await exec([command, fixture]);
+      expect(stderr).toContain(`Unable to find resolution`);
+    });
+  });
+
   describe('Package with duplicate dependencies', () => {
     const fixture = getFixturePath('regular');
     it('fails with 9 duplicate dependencies', async () => {

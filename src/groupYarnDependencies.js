@@ -1,3 +1,5 @@
+const { StaleLockfileError } = require('./errors');
+
 function groupYarnDependencies(
   packageDependencies,
   resolvedDependencies,
@@ -15,7 +17,13 @@ function groupYarnDependencies(
 
     const versions = installedVersions.get(packageName);
     const dependencyKey = `${packageName}@${requestedVersion}`;
-    const installedVersion = dependencies[dependencyKey].version;
+    const resolvedDependency = dependencies[dependencyKey];
+    if (!resolvedDependency) {
+      throw new StaleLockfileError(
+        `Unable to find resolution for "${dependencyKey}", ensure yarn.lock is up to date`
+      );
+    }
+    const installedVersion = resolvedDependency.version;
 
     if (!versions.has(installedVersion)) {
       versions.add(installedVersion);
