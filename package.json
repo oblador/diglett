@@ -5,6 +5,7 @@
   "main": "src/cli.js",
   "scripts": {
     "test": "jest",
+    "check-format": "prettier --check {src,test}/**/*.js README.md",
     "format": "prettier --write {src,test}/**/*.js README.md"
   },
   "bin": {
