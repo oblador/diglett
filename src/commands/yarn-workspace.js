@@ -106,7 +106,7 @@ exports.handler = function(argv) {
 
   const packages = (workspaces.packages || workspaces)
     .map(pattern => glob.sync(pattern, { cwd: projectPath }))
-    .reduce((acc, arr) => acc.concat(arr), [])
+    .reduce((acc, arr) => acc.concat(arr), ['.'])
     .map(packagePath =>
       readNormalizedPackageJSONSafely(projectPath, packagePath)
     )
