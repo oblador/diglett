@@ -9,7 +9,7 @@ function printResult(duplicates, isYarn = false) {
         }`
       )
     );
-    duplicates.forEach((versions, packageName) => {
+    [...duplicates.entries()].sort().forEach(([packageName, versions]) => {
       console.warn(
         `${chalk.bold(packageName)} with versions ${Array.from(versions).join(
           ', '
