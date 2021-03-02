@@ -20,19 +20,19 @@ describe('diglett workspace', () => {
       const { stderr } = await exec(['yarn-workspace', fixture]);
       expect(stripAnsi(stderr)).toMatchInlineSnapshot(`
         "Found 13 duplicate dependencies
-        @material/textfield with versions 3.2.0, 4.0.0.
         @material/animation with versions 3.1.0, 4.0.0.
         @material/base with versions 3.1.0, 4.0.0.
         @material/dom with versions 3.1.0, 4.0.0.
-        @material/floating-label with versions 3.2.0, 4.0.0.
-        @material/rtl with versions 3.2.0, 4.0.0.
-        @material/theme with versions 3.1.0, 4.0.0.
         @material/feature-targeting with versions 3.1.0, 4.0.0.
-        @material/typography with versions 3.1.0, 4.0.0.
+        @material/floating-label with versions 3.2.0, 4.0.0.
         @material/line-ripple with versions 3.1.0, 4.0.0.
         @material/notched-outline with versions 3.2.0, 4.0.0.
-        @material/shape with versions 3.1.0, 4.0.0.
         @material/ripple with versions 3.2.0, 4.0.0.
+        @material/rtl with versions 3.2.0, 4.0.0.
+        @material/shape with versions 3.1.0, 4.0.0.
+        @material/textfield with versions 3.2.0, 4.0.0.
+        @material/theme with versions 3.1.0, 4.0.0.
+        @material/typography with versions 3.1.0, 4.0.0.
         "
       `);
     });
@@ -82,13 +82,13 @@ describe('diglett workspace', () => {
       expect(stripAnsi(stderr)).toMatchInlineSnapshot(`
         "Found 9 duplicate dependencies
         @material/animation with versions 3.1.0, 4.0.0.
-        @material/feature-targeting with versions 3.1.0, 4.0.0.
-        @material/theme with versions 3.1.0, 4.0.0.
-        @material/ripple with versions 3.2.0, 4.0.0.
         @material/base with versions 3.1.0, 4.0.0.
         @material/dom with versions 3.1.0, 4.0.0.
+        @material/feature-targeting with versions 3.1.0, 4.0.0.
+        @material/ripple with versions 3.2.0, 4.0.0.
         @material/rtl with versions 3.2.0, 4.0.0.
         @material/shape with versions 3.1.0, 4.0.0.
+        @material/theme with versions 3.1.0, 4.0.0.
         @material/typography with versions 3.1.0, 4.0.0.
         "
       `);
@@ -105,13 +105,13 @@ describe('diglett workspace', () => {
       expect(stripAnsi(stderr)).toMatchInlineSnapshot(`
         "Found 9 duplicate dependencies
         @material/animation with versions 3.1.0, 4.0.0.
-        @material/feature-targeting with versions 3.1.0, 4.0.0.
-        @material/theme with versions 3.1.0, 4.0.0.
-        @material/ripple with versions 3.2.0, 4.0.0.
         @material/base with versions 3.1.0, 4.0.0.
         @material/dom with versions 3.1.0, 4.0.0.
+        @material/feature-targeting with versions 3.1.0, 4.0.0.
+        @material/ripple with versions 3.2.0, 4.0.0.
         @material/rtl with versions 3.2.0, 4.0.0.
         @material/shape with versions 3.1.0, 4.0.0.
+        @material/theme with versions 3.1.0, 4.0.0.
         @material/typography with versions 3.1.0, 4.0.0.
         "
       `);
@@ -149,13 +149,13 @@ describe('diglett workspace', () => {
       expect(stripAnsi(stderr)).toMatchInlineSnapshot(`
         "Found 9 duplicate dependencies
         @material/animation with versions 3.1.0, 4.0.0.
-        @material/feature-targeting with versions 3.1.0, 4.0.0.
-        @material/theme with versions 3.1.0, 4.0.0.
-        @material/ripple with versions 3.2.0, 4.0.0.
         @material/base with versions 3.1.0, 4.0.0.
         @material/dom with versions 3.1.0, 4.0.0.
+        @material/feature-targeting with versions 3.1.0, 4.0.0.
+        @material/ripple with versions 3.2.0, 4.0.0.
         @material/rtl with versions 3.2.0, 4.0.0.
         @material/shape with versions 3.1.0, 4.0.0.
+        @material/theme with versions 3.1.0, 4.0.0.
         @material/typography with versions 3.1.0, 4.0.0.
         "
       `);
@@ -171,13 +171,13 @@ describe('diglett workspace', () => {
       expect(stripAnsi(stderr)).toMatchInlineSnapshot(`
         "Found 9 duplicate dependencies
         @material/animation with versions 3.1.0, 4.0.0.
-        @material/feature-targeting with versions 3.1.0, 4.0.0.
-        @material/theme with versions 3.1.0, 4.0.0.
-        @material/ripple with versions 3.2.0, 4.0.0.
         @material/base with versions 3.1.0, 4.0.0.
         @material/dom with versions 3.1.0, 4.0.0.
+        @material/feature-targeting with versions 3.1.0, 4.0.0.
+        @material/ripple with versions 3.2.0, 4.0.0.
         @material/rtl with versions 3.2.0, 4.0.0.
         @material/shape with versions 3.1.0, 4.0.0.
+        @material/theme with versions 3.1.0, 4.0.0.
         @material/typography with versions 3.1.0, 4.0.0.
         "
       `);
