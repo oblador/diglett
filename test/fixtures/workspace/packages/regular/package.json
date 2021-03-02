@@ -7,6 +7,7 @@
     "@material/textfield": "^4.0.0"
   }, 
   "devDependencies": {
-    "@material/base": "3.0.0"
+    "@material/base": "3.0.0",
+    "diglett-workspace-dev-dependency": "0.0.0"
   }
 }

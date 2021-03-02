@@ -93,6 +93,22 @@ function getWorkspaceDependencies(
     }, accumulatedPackageNames);
 }
 
+function ocurrsExeclusivelyAsDevDependencies(packageName, packages) {
+  let devDependency = false;
+  for (const [name, pkg] of packages.entries()) {
+    const dependencies = pkg.dependencies || {};
+    const optionalDependencies = pkg.optionalDependencies || {};
+    const devDependencies = pkg.devDependencies || {};
+    if (packageName in dependencies || packageName in optionalDependencies) {
+      return false;
+    }
+    if (packageName in devDependencies) {
+      devDependency = true;
+    }
+  }
+  return devDependency;
+}
+
 exports.handler = function(argv) {
   const projectPath = path.resolve(argv.projectPath || './');
   const packageJSON = readPackageJSON(projectPath);
@@ -114,10 +130,14 @@ exports.handler = function(argv) {
     .reduce((acc, pkg) => acc.set(pkg.name, pkg), new Map());
 
   const packageNames = Array.from(packages.keys());
-  const whitelist = argv.package ? [].concat(argv.package) : packageNames;
+  const allowlist = argv.package
+    ? [].concat(argv.package)
+    : packageNames.filter(
+        name => argv.dev || !ocurrsExeclusivelyAsDevDependencies(name, packages)
+      );
 
   if (argv.package) {
-    whitelist.forEach(packageName => {
+    allowlist.forEach(packageName => {
       if (!packages.has(packageName)) {
         throw new InvalidArgumentError(
           `Invalid --package argument passed; package "${packageName}" does not exist`
@@ -126,7 +146,7 @@ exports.handler = function(argv) {
     });
   }
 
-  const versions = whitelist
+  const versions = allowlist
     .map(packageName =>
       [
         getPackageDependencies(packages.get(packageName), dependencyGroups),

@@ -1,0 +1,8 @@
+{
+  "name": "diglett-workspace-dev-dependency",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@material/textfield": "3.1.0"
+  }
+}

@@ -128,6 +128,34 @@ describe('diglett workspace', () => {
     });
   });
 
+  describe('Package in workspace listed as devDependency', () => {
+    it('does not show dependencies as duplicate', async () => {
+      const { stderr } = await exec([
+        'yarn-workspace',
+        fixture,
+        '--filter @material/textfield',
+      ]);
+      expect(stripAnsi(stderr)).toMatchInlineSnapshot(`
+        "Found 1 duplicate dependency
+        @material/textfield with versions 3.2.0, 4.0.0.
+        "
+      `);
+    });
+    it('shows dependencies as duplicate when ran with --dev', async () => {
+      const { stderr } = await exec([
+        'yarn-workspace',
+        fixture,
+        '--dev',
+        '--filter @material/textfield',
+      ]);
+      expect(stripAnsi(stderr)).toMatchInlineSnapshot(`
+        "Found 1 duplicate dependency
+        @material/textfield with versions 3.2.0, 4.0.0, 3.1.0.
+        "
+      `);
+    });
+  });
+
   describe('Package with duplicate devDependencies', () => {
     it('passes without --dev flag', async () => {
       const { stdout, stderr } = await exec([
