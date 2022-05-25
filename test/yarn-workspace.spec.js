@@ -150,7 +150,7 @@ describe('diglett workspace', () => {
       ]);
       expect(stripAnsi(stderr)).toMatchInlineSnapshot(`
         "Found 1 duplicate dependency
-        @material/textfield with versions 3.2.0, 4.0.0, 3.1.0.
+        @material/textfield with versions 3.1.0, 3.2.0, 4.0.0.
         "
       `);
     });

@@ -11,9 +11,9 @@ function printResult(duplicates, isYarn = false) {
     );
     [...duplicates.entries()].sort().forEach(([packageName, versions]) => {
       console.warn(
-        `${chalk.bold(packageName)} with versions ${Array.from(versions).join(
-          ', '
-        )}.`
+        `${chalk.bold(packageName)} with versions ${Array.from(versions)
+          .sort()
+          .join(', ')}.`
       );
     });
     if (isYarn) {
