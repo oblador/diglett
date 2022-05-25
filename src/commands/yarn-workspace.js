@@ -146,15 +146,18 @@ exports.handler = function(argv) {
     });
   }
 
-  const versions = allowlist
-    .map(packageName =>
-      [
+  const versions = Array.from(
+    allowlist.reduce(
+      (acc, packageName) =>
+        getWorkspaceDependencies(packageName, packages, acc),
+      new Set()
+    )
+  )
+    .map(packageName => getPackageDependencies(packages.get(packageName)))
+    .concat(
+      allowlist.map(packageName => [
         getPackageDependencies(packages.get(packageName), dependencyGroups),
-      ].concat(
-        Array.from(
-          getWorkspaceDependencies(packageName, packages)
-        ).map(packageName => getPackageDependencies(packages.get(packageName)))
-      )
+      ])
     )
     .reduce((acc, arr) => Array.from(new Set(acc.concat(arr))), [])
     .map(omit(packageNames))
