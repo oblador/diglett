@@ -5,8 +5,8 @@
   "main": "src/cli.js",
   "scripts": {
     "test": "jest",
-    "check-format": "prettier --check {src,test}/**/*.js README.md",
-    "format": "prettier --write {src,test}/**/*.js README.md"
+    "check-format": "prettier --check \"{src,test}/**/*.js\" README.md",
+    "format": "prettier --write \"{src,test}/**/*.js\" README.md"
   },
   "bin": {
     "diglett": "./bin/diglett"
@@ -40,6 +40,7 @@
     "@yarnpkg/lockfile": "^1.1.0",
     "chalk": "^3.0.0",
     "glob": "^7.1.6",
+    "js-yaml": "^4.1.0",
     "yargs": "^15.1.0"
   },
   "devDependencies": {

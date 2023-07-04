@@ -4,3 +4,4 @@
 # Generated files
 *.log
 node_modules/
+.yarn/

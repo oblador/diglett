@@ -1,5 +1,3 @@
-const groupYarnDependencies = require('./groupYarnDependencies');
-
 function getDuplicateDependencies(groupedVersions, packageNamePattern) {
   const duplicates = new Map();
   groupedVersions.forEach((versions, packageName) => {
