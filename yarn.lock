@@ -555,10 +555,13 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@yarnpkg/lockfile@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@yarnpkg/lockfile/-/lockfile-1.1.0.tgz#e77a97fbd345b76d83245edcd17d393b1b41fb31"
-  integrity sha512-GpSwvyXOcOOlV70vbnzjj4fW5xW/FdUF6nQEt1ENy7m4ZCczi1+/buVUPAqmGfqznsORNFzUMjctTIp8a9tuCQ==
+"@yarnpkg/parsers@^3.0.0-rc.48.1":
+  version "3.0.0-rc.48.1"
+  resolved "https://registry.yarnpkg.com/@yarnpkg/parsers/-/parsers-3.0.0-rc.48.1.tgz#8636c24c02c888f2602a464edfd7fb113d75e937"
+  integrity sha512-qEewJouhRvaecGjbkjz9kMKn96UASbDodNrE5MYy2TrXkHcisIkbMxZdGBYfAq+s1dFtCSx/5H4k5bEkfakM+A==
+  dependencies:
+    js-yaml "^3.10.0"
+    tslib "^2.4.0"
 
 abab@^2.0.3:
   version "2.0.3"
@@ -642,11 +645,6 @@ argparse@^1.0.7:
   integrity sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==
   dependencies:
     sprintf-js "~1.0.2"
-
-argparse@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/argparse/-/argparse-2.0.1.tgz#246f50f3ca78a3240f6c997e8a9bd1eac49e4b38"
-  integrity sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==
 
 arr-diff@^4.0.0:
   version "4.0.0"
@@ -2166,6 +2164,14 @@ js-tokens@^4.0.0:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
+js-yaml@^3.10.0:
+  version "3.14.1"
+  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.14.1.tgz#dae812fdb3825fa306609a8717383c50c36a0537"
+  integrity sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==
+  dependencies:
+    argparse "^1.0.7"
+    esprima "^4.0.0"
+
 js-yaml@^3.13.1:
   version "3.13.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.13.1.tgz#aff151b30bfdfa8e49e05da22e7415e9dfa37847"
@@ -2173,13 +2179,6 @@ js-yaml@^3.13.1:
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
-
-js-yaml@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.1.0.tgz#c1fb65f8f5017901cdd2c951864ba18458a10602"
-  integrity sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==
-  dependencies:
-    argparse "^2.0.1"
 
 jsbn@~0.1.0:
   version "0.1.1"
@@ -3287,6 +3286,11 @@ tr46@^2.0.2:
   integrity sha512-3n1qG+/5kg+jrbTzwAykB5yRYtQCTqOGKq5U5PE3b0a1/mzo6snDhjGS0zJVJunO0NrT3Dg1MLy5TjWP/UJppg==
   dependencies:
     punycode "^2.1.1"
+
+tslib@^2.4.0:
+  version "2.6.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.6.0.tgz#b295854684dbda164e181d259a22cd779dcd7bc3"
+  integrity sha512-7At1WUettjcSRHXCyYtTselblcHl9PJFFVKiCAy/bY97+BPZXSQ2wbq0P9s8tK2G7dFQfNnlJnPAiArVBVBsfA==
 
 tunnel-agent@^0.6.0:
   version "0.6.0"

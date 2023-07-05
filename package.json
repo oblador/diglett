@@ -37,10 +37,9 @@
   },
   "homepage": "https://github.com/oblador/diglett#readme",
   "dependencies": {
-    "@yarnpkg/lockfile": "^1.1.0",
+    "@yarnpkg/parsers": "^3.0.0-rc.48.1",
     "chalk": "^3.0.0",
     "glob": "^7.1.6",
-    "js-yaml": "^4.1.0",
     "yargs": "^15.1.0"
   },
   "devDependencies": {
