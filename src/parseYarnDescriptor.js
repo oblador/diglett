@@ -10,9 +10,20 @@ const PARSE_REGEX = /(^@?[^/]+?\/?[^@/]+?)@(?:.*:)*(.+)/;
  */
 
 /**
- * Parses a yarn berry descriptor into an object.
+ * Parses a yarn descriptor into an object.
+ * Handles both yarn v1 and yarn berry descriptors.
  *
- * For example `@material/ripple@npm:1.0.0` will be parsed to:
+ * Supported formats:
+ * - "package@version"
+ * - "@scope/package@version"
+ * - "package@protocol:version"
+ * - "@scope/package@protocol:version"
+ *
+ * Examples:
+ * - yarn v1: "@material/ripple@1.0.0"
+ * - yarn berry: "@material/ripple@npm:1.0.0"
+ *
+ * Both will be parsed to:
  * ```
  * {
  *  package: '@material/ripple',
@@ -20,13 +31,7 @@ const PARSE_REGEX = /(^@?[^/]+?\/?[^@/]+?)@(?:.*:)*(.+)/;
  * }
  * ```
  *
- * Supported formats:
- * - `package@version`
- * - `@scope/package@version`
- * - `package@protocol:version`
- * - `@scope/package@protocol:version`
- *
- * @param {string} descriptor - The yarn berry descriptor to parse.
+ * @param {string} descriptor - The yarn descriptor to parse.
  * @returns {ParsedDescriptor} The parsed descriptor.
  */
 function parseYarnDescriptor(descriptor) {

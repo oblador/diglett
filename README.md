@@ -23,6 +23,8 @@ npx diglett npm <optional path to project>
 npx diglett yarn <optional path to project>
 ```
 
+Supports both yarn v1 and yarn berry.
+
 ### Yarn workspaces
 
 ```
@@ -30,6 +32,8 @@ npx diglett yarn-workspace <optional path to project> [--package <package name>]
 ```
 
 By default all workspace packages are analyzed. If you just want to analyze one, pass the `--package` option with the package name – not folder name. It's possible to pass the `--package` option multiple times to analyze multiple packages.
+
+Supports both yarn v1 and yarn berry.
 
 ## General options
 
