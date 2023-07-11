@@ -1,4 +1,3 @@
-const path = require('path');
 const { exec, getFixturePath } = require('./helpers');
 
 describe.each([
@@ -29,28 +28,31 @@ describe.each([
     });
   });
 
-  describe('Package with duplicate dependencies', () => {
-    const fixture = getFixturePath('regular');
-    it('fails with 9 duplicate dependencies', async () => {
-      const { stderr } = await exec([command, fixture]);
-      expect(stderr).toContain('Found 9 duplicate dependencies');
-    });
+  describe.each(['regular', 'yarn-berry'])(
+    '%s package with duplicate dependencies',
+    fixtureName => {
+      const fixture = getFixturePath(fixtureName);
+      it('fails with 9 duplicate dependencies', async () => {
+        const { stderr } = await exec([command, fixture]);
+        expect(stderr).toContain('Found 9 duplicate dependencies');
+      });
 
-    it('passes with non-matching filter', async () => {
-      const { stderr } = await exec([command, fixture, '--filter', 'hest']);
-      expect(stderr).toBeFalsy();
-    });
+      it('passes with non-matching filter', async () => {
+        const { stderr } = await exec([command, fixture, '--filter', 'hest']);
+        expect(stderr).toBeFalsy();
+      });
 
-    it('fails with matching filter', async () => {
-      const { stderr } = await exec([
-        command,
-        fixture,
-        '--filter',
-        '^@material/ripple$',
-      ]);
-      expect(stderr).toContain('Found 1 duplicate dependency');
-    });
-  });
+      it('fails with matching filter', async () => {
+        const { stderr } = await exec([
+          command,
+          fixture,
+          '--filter',
+          '^@material/ripple$',
+        ]);
+        expect(stderr).toContain('Found 1 duplicate dependency');
+      });
+    }
+  );
 
   describe('Package with duplicate devDependencies', () => {
     const fixture = getFixturePath('dev-dependencies');

@@ -1,5 +1,3 @@
-const path = require('path');
-
 class DiglettError extends Error {
   constructor(message, errorType) {
     super(message);

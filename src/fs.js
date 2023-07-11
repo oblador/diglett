@@ -1,6 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const lockfile = require('@yarnpkg/lockfile');
+const { parseSyml } = require('@yarnpkg/parsers');
 const { FileNotFoundError, ParseError } = require('./errors');
 
 function readFile(fileName, projectPath) {
@@ -22,11 +22,12 @@ function readJSON(fileName, projectPath) {
 
 function readYarnLockfile(projectPath) {
   const file = readFile('yarn.lock', projectPath);
-  const parsed = lockfile.parse(file);
-  if (parsed.type !== 'success') {
+
+  try {
+    return parseSyml(file);
+  } catch {
     throw new ParseError('Failed to parse yarn.lock');
   }
-  return parsed.object;
 }
 
 function readPackageJSON(projectPath) {
