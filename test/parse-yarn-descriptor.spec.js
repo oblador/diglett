@@ -29,6 +29,13 @@ describe('parse-yarn-descriptor', () => {
     });
   });
 
+  it('should parse a single char yarn berry descriptor with protocol', () => {
+    expect(parseYarnDescriptor('q@npm:1.0.0')).toEqual({
+      packageName: 'q',
+      version: '1.0.0',
+    });
+  });
+
   it('should throw an error if the descriptor is invalid', () => {
     expect(() => parseYarnDescriptor('invalid')).toThrow();
   });
