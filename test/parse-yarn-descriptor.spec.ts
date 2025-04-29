@@ -43,4 +43,4 @@ describe('parse-yarn-descriptor', () => {
   it('should throw an error if the descriptor is undefined', () => {
     expect(() => parseYarnDescriptor(undefined as unknown as string)).toThrow();
   });
-}); 
+});

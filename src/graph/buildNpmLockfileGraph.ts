@@ -1,7 +1,10 @@
 import { createDependencyNode } from './createDependencyNode';
 import type { DependencyNode } from './createDependencyNode';
 
-function findDependency(name: string, node: DependencyNode | null): DependencyNode | null {
+function findDependency(
+  name: string,
+  node: DependencyNode | null
+): DependencyNode | null {
   if (node) {
     const child = node.children.get(name);
     if (child) {
@@ -12,7 +15,10 @@ function findDependency(name: string, node: DependencyNode | null): DependencyNo
   return null;
 }
 
-function resolveAndPopulateRequires(node: DependencyNode, requires: Record<string, string>) {
+function resolveAndPopulateRequires(
+  node: DependencyNode,
+  requires: Record<string, string>
+) {
   if (requires) {
     for (const name in requires) {
       const dependencyNode = findDependency(name, node);
@@ -25,7 +31,10 @@ function resolveAndPopulateRequires(node: DependencyNode, requires: Record<strin
   return node;
 }
 
-function populateDependencyNodes(node: DependencyNode, dependencies: Record<string, any>) {
+function populateDependencyNodes(
+  node: DependencyNode,
+  dependencies: Record<string, any>
+) {
   for (const name in dependencies) {
     const dependency = dependencies[name];
     const child = createDependencyNode(name, dependency.version, node);
@@ -37,7 +46,10 @@ function populateDependencyNodes(node: DependencyNode, dependencies: Record<stri
   return node;
 }
 
-function populateRequireNodes(node: DependencyNode, dependency: Record<string, any>) {
+function populateRequireNodes(
+  node: DependencyNode,
+  dependency: Record<string, any>
+) {
   node.children.forEach((child, name) => {
     populateRequireNodes(child, dependency.dependencies[name]);
   });

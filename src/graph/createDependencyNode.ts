@@ -8,7 +8,6 @@ export interface DependencyNode {
   children: Map<string, DependencyNode>;
 }
 
-
 export function createDependencyNode(
   name: string,
   version: string,

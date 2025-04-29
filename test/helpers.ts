@@ -9,7 +9,7 @@ interface ExecResult {
 }
 
 export const exec = (args: string[] = []): Promise<ExecResult> =>
-  new Promise(resolve => {
+  new Promise((resolve) => {
     childProcessExec(
       `${DIGLETT_PATH} ${args.join(' ')}`,
       (err, stdout, stderr) => {
@@ -18,5 +18,5 @@ export const exec = (args: string[] = []): Promise<ExecResult> =>
     );
   });
 
-export const getFixturePath = (fixtureName: string): string => 
-  `${__dirname}/fixtures/${fixtureName}`; 
+export const getFixturePath = (fixtureName: string): string =>
+  `${__dirname}/fixtures/${fixtureName}`;

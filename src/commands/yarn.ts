@@ -21,7 +21,7 @@ export const builder = {
   ...sharedArguments,
 };
 
-export const handler = function(argv: YarnArgs) {
+export const handler = function (argv: YarnArgs) {
   const projectPath = path.resolve(argv.projectPath || './');
   const packageJSON = readPackageJSON(projectPath) as PackageJSON;
   const lockfile = readYarnLockfile(projectPath);
@@ -32,7 +32,11 @@ export const handler = function(argv: YarnArgs) {
     dependencyGroups
   );
 
-  const groupedVersions = groupYarnDependencies(packageDependencies, lockfile, new Map());
+  const groupedVersions = groupYarnDependencies(
+    packageDependencies,
+    lockfile,
+    new Map()
+  );
 
   const duplicates = getDuplicateDependencies(groupedVersions, argv.filter);
 

@@ -1,7 +1,11 @@
 import { StaleLockfileError } from './errors';
 import { parseYarnDescriptor } from './parseYarnDescriptor';
 
-function resolveDependency(packageName: string, requestedVersion: string, dependencies: Record<string, any>) {
+function resolveDependency(
+  packageName: string,
+  requestedVersion: string,
+  dependencies: Record<string, any>
+) {
   // yarn v1 uses a simple format for the key: `${packageName}@${version}`
   const simpleKey = `${packageName}@${requestedVersion}`;
   if (simpleKey in dependencies) return dependencies[simpleKey];

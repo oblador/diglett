@@ -1,7 +1,8 @@
 /**
  * A regular expression for parsing a yarn berry descriptor.
  */
-const PARSE_REGEX = /(?<packageName>(^@?[^/]+?\/)?[^@/]+?)@(?:.*:)*(?<version>.+)/;
+const PARSE_REGEX =
+  /(?<packageName>(^@?[^/]+?\/)?[^@/]+?)@(?:.*:)*(?<version>.+)/;
 
 /**
  * @typedef {Object} ParsedDescriptor
@@ -40,6 +41,9 @@ export function parseYarnDescriptor(descriptor: string) {
     throw new Error(`Unable to parse descriptor: ${descriptor}`);
   }
 
-  const { packageName, version } = result.groups as { packageName: string; version: string };
+  const { packageName, version } = result.groups as {
+    packageName: string;
+    version: string;
+  };
   return { packageName, version };
 }

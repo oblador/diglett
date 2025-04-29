@@ -33,4 +33,4 @@ export class StaleLockfileError extends DiglettError {
   constructor(message: string) {
     super(message, 'StaleLockfileError');
   }
-} 
+}

@@ -23,4 +23,4 @@ function main(): void {
   }
 }
 
-export default main; 
+export default main;

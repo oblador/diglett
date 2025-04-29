@@ -21,7 +21,7 @@ export const builder = {
   ...sharedArguments,
 };
 
-export const handler = function(argv: NpmArgs) {
+export const handler = function (argv: NpmArgs) {
   const projectPath = path.resolve(argv.projectPath || './');
   const packageJSON = readPackageJSON(projectPath);
   const lockfile = readNpmLockfile(projectPath);

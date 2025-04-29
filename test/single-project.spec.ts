@@ -72,4 +72,4 @@ describe.each([
       expect(stderr).toContain('Found 9 duplicate dependencies');
     });
   });
-}); 
+});
