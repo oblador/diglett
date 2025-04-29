@@ -1,16 +1,18 @@
-const createDependencyNode = require('./createDependencyNode');
+import { createDependencyNode } from './createDependencyNode';
+import type { DependencyNode } from './createDependencyNode';
 
-const findDependency = (name, node) => {
+function findDependency(name: string, node: DependencyNode | null): DependencyNode | null {
   if (node) {
-    if (node.children.has(name)) {
-      return node.children.get(name);
+    const child = node.children.get(name);
+    if (child) {
+      return child;
     }
     return findDependency(name, node.parent);
   }
   return null;
-};
+}
 
-const resolveAndPopulateRequires = (node, requires) => {
+function resolveAndPopulateRequires(node: DependencyNode, requires: Record<string, string>) {
   if (requires) {
     for (const name in requires) {
       const dependencyNode = findDependency(name, node);
@@ -21,9 +23,9 @@ const resolveAndPopulateRequires = (node, requires) => {
     }
   }
   return node;
-};
+}
 
-const populateDependencyNodes = (node, dependencies) => {
+function populateDependencyNodes(node: DependencyNode, dependencies: Record<string, any>) {
   for (const name in dependencies) {
     const dependency = dependencies[name];
     const child = createDependencyNode(name, dependency.version, node);
@@ -33,26 +35,28 @@ const populateDependencyNodes = (node, dependencies) => {
     }
   }
   return node;
-};
+}
 
-const populateRequireNodes = (node, dependency) => {
+function populateRequireNodes(node: DependencyNode, dependency: Record<string, any>) {
   node.children.forEach((child, name) => {
     populateRequireNodes(child, dependency.dependencies[name]);
   });
   resolveAndPopulateRequires(node, dependency.requires);
 
   return node;
-};
+}
 
-const buildNpmLockfileGraph = lockfile => {
-  const node = createDependencyNode(lockfile.name);
+export function buildNpmLockfileGraph(lockfile: Record<string, any>) {
+  const node = createDependencyNode(lockfile.name, lockfile.version);
   const { dependencies } = lockfile;
   populateDependencyNodes(node, dependencies);
   for (const name in dependencies) {
     const child = node.children.get(name);
-    populateRequireNodes(child, dependencies[name]);
+    if (child) {
+      populateRequireNodes(child, dependencies[name]);
+    } else {
+      throw new Error(`Dependency ${name} not found`);
+    }
   }
   return node;
-};
-
-module.exports = buildNpmLockfileGraph;
+}

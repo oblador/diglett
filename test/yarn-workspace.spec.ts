@@ -1,6 +1,6 @@
-const path = require('path');
-const stripAnsi = require('strip-ansi');
-const { exec, getFixturePath } = require('./helpers');
+import path from 'path';
+import stripAnsi from 'strip-ansi';
+import { exec, getFixturePath } from './helpers';
 
 describe('diglett workspace', () => {
   describe('Non-existing project', () => {
@@ -211,4 +211,4 @@ describe('diglett workspace', () => {
       `);
     });
   });
-});
+}); 

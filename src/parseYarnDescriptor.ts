@@ -34,14 +34,12 @@ const PARSE_REGEX = /(?<packageName>(^@?[^/]+?\/)?[^@/]+?)@(?:.*:)*(?<version>.+
  * @param {string} descriptor - The yarn descriptor to parse.
  * @returns {ParsedDescriptor} The parsed descriptor.
  */
-function parseYarnDescriptor(descriptor) {
+export function parseYarnDescriptor(descriptor: string) {
   const result = PARSE_REGEX.exec(descriptor);
-  if (!result) {
+  if (!result?.groups) {
     throw new Error(`Unable to parse descriptor: ${descriptor}`);
   }
 
-  const { packageName, version } = result.groups;
+  const { packageName, version } = result.groups as { packageName: string; version: string };
   return { packageName, version };
 }
-
-module.exports = parseYarnDescriptor;

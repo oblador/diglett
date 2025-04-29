@@ -1,4 +1,7 @@
-function getDuplicateDependencies(groupedVersions, packageNamePattern) {
+export function getDuplicateDependencies(
+  groupedVersions: Map<string, Set<string>>,
+  packageNamePattern?: RegExp
+) {
   const duplicates = new Map();
   groupedVersions.forEach((versions, packageName) => {
     if (
@@ -11,5 +14,3 @@ function getDuplicateDependencies(groupedVersions, packageNamePattern) {
 
   return duplicates;
 }
-
-module.exports = getDuplicateDependencies;

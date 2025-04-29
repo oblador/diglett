@@ -1,9 +1,9 @@
-const yargs = require('yargs');
-const chalk = require('chalk');
-const { DiglettError } = require('./errors');
-const { name, version } = require('../package.json');
+import yargs from 'yargs';
+import chalk from 'chalk';
+import { DiglettError } from './errors';
+import { name, version } from '../package.json';
 
-function main() {
+function main(): void {
   console.info(chalk.bold(`${name} v${version}`));
 
   try {
@@ -23,4 +23,4 @@ function main() {
   }
 }
 
-module.exports = main;
+export default main; 

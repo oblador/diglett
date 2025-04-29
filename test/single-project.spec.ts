@@ -1,9 +1,9 @@
-const { exec, getFixturePath } = require('./helpers');
+import { exec, getFixturePath } from './helpers';
 
 describe.each([
   ['yarn', 'yarn.lock'],
   ['npm', 'package-lock.json'],
-])('diglett %s', (command, lockfileName) => {
+])('diglett %s', (command: string, lockfileName: string) => {
   describe("Project that doesn't exist", () => {
     const fixture = getFixturePath('non-existing');
     it('fails', async () => {
@@ -30,7 +30,7 @@ describe.each([
 
   describe.each(['regular', 'yarn-berry'])(
     '%s package with duplicate dependencies',
-    fixtureName => {
+    (fixtureName: string) => {
       const fixture = getFixturePath(fixtureName);
       it('fails with 9 duplicate dependencies', async () => {
         const { stderr } = await exec([command, fixture]);
@@ -72,4 +72,4 @@ describe.each([
       expect(stderr).toContain('Found 9 duplicate dependencies');
     });
   });
-});
+}); 

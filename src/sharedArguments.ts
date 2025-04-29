@@ -1,8 +1,8 @@
-module.exports = {
+export const sharedArguments = {
   filter: {
     default: undefined,
     description: 'filter packages by regular expression',
-    coerce: value => value && new RegExp(value),
+    coerce: (value: string | undefined) => value && new RegExp(value),
   },
   all: {
     alias: 'allDependencies',

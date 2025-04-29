@@ -1,7 +1,7 @@
-const { StaleLockfileError } = require('./errors');
-const parseYarnDescriptor = require('./parseYarnDescriptor');
+import { StaleLockfileError } from './errors';
+import { parseYarnDescriptor } from './parseYarnDescriptor';
 
-function resolveDependency(packageName, requestedVersion, dependencies) {
+function resolveDependency(packageName: string, requestedVersion: string, dependencies: Record<string, any>) {
   // yarn v1 uses a simple format for the key: `${packageName}@${version}`
   const simpleKey = `${packageName}@${requestedVersion}`;
   if (simpleKey in dependencies) return dependencies[simpleKey];
@@ -20,15 +20,15 @@ function resolveDependency(packageName, requestedVersion, dependencies) {
   return null;
 }
 
-function groupYarnDependencies(
-  packageDependencies,
-  resolvedDependencies,
-  collection
+export function groupYarnDependencies(
+  packageDependencies: Record<string, any>,
+  resolvedDependencies: Record<string, any>,
+  collection: Map<string, Set<string>>
 ) {
   const populateVersions = (
-    packageName,
-    requestedVersion,
-    dependencies,
+    packageName: string,
+    requestedVersion: string,
+    dependencies: Record<string, any>,
     installedVersions = new Map()
   ) => {
     if (!installedVersions.has(packageName)) {
@@ -79,5 +79,3 @@ function groupYarnDependencies(
 
   return versions;
 }
-
-module.exports = groupYarnDependencies;

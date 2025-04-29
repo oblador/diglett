@@ -1,5 +1,5 @@
-function getPackageDependencies(
-  packageJSON,
+export function getPackageDependencies(
+  packageJSON: Record<string, any>,
   dependencyGroups = ['dependencies']
 ) {
   return dependencyGroups
@@ -7,5 +7,3 @@ function getPackageDependencies(
     .filter(Boolean)
     .reduce((acc, current) => Object.assign(acc, current), {});
 }
-
-module.exports = getPackageDependencies;

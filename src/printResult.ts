@@ -1,6 +1,6 @@
-const chalk = require('chalk');
+import chalk from 'chalk';
 
-function printResult(duplicates, isYarn = false) {
+export function printResult(duplicates: Map<string, Set<string>>, isYarn = false) {
   if (duplicates.size !== 0) {
     console.error(
       chalk.bold.red(
@@ -34,5 +34,3 @@ function printResult(duplicates, isYarn = false) {
     console.info('No duplicate dependencies found');
   }
 }
-
-module.exports = printResult;

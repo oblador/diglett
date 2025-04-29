@@ -1,4 +1,4 @@
-const parseYarnDescriptor = require('../src/parseYarnDescriptor');
+import { parseYarnDescriptor } from '../src/parseYarnDescriptor';
 
 describe('parse-yarn-descriptor', () => {
   it('should parse a yarn v1 descriptor', () => {
@@ -41,6 +41,6 @@ describe('parse-yarn-descriptor', () => {
   });
 
   it('should throw an error if the descriptor is undefined', () => {
-    expect(() => parseYarnDescriptor()).toThrow();
+    expect(() => parseYarnDescriptor(undefined as unknown as string)).toThrow();
   });
-});
+}); 
